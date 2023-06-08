@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import {StockPriceInfo} from '../app/overview/page'
+import {StockPriceInfo} from '../../app/overview/page'
 
 interface StockTableProps {
   stockPriceInfo: StockPriceInfo[]

@@ -1,8 +1,12 @@
 import React from 'react'
-import StockTable from '../../components/StockTable'
+import StockTable from '../../components/StockTable/StockTable'
 import { GetServerSideProps } from 'next';
 
-export type StockPriceInfo = {
+export interface StockPriceDetails{
+  queryCount: Number,
+  resultsCount: Number,
+  adjusted: boolean,
+  results: {
     T: String;
     c: Number;
     h: Number;
@@ -13,19 +17,22 @@ export type StockPriceInfo = {
     v: Number;
     vw: Number;
   }[]
-  
-  // interface StockPrice{
-  //   stockPriceInfo: StockPriceInfo[]
-  // }
+}
+
+const getStockPrice = async (): Promise<StockPriceDetails> => {
+  const res = await fetch("https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2023-06-02?adjusted=true&apiKey=Gh8xZ543zMBDukzN4CNcYoZYtbmRM7fC", {cache: 'no-store'})
+  const data: StockPriceDetails = await res.json()
+  return data
+}
 
 const Overview = async () => {
 
-  // const dynamicData: StockPriceInfo = await fetch("https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2023-06-02?adjusted=true&apiKey=Gh8xZ543zMBDukzN4CNcYoZYtbmRM7fC", {cache: 'no-store' }).then((res) => { console.log(res.json<StockPriceInfo>()); return res.json()})
+  const stockPriceInfo: StockPriceDetails = await getStockPrice()
   
 
   return (
     <div>
-        {/* <StockTable stockPriceInfo={stockPriceInfo} /> */}
+        {stockPriceInfo.results[0].T}
     </div>
   )
 }
