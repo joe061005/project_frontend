@@ -6,7 +6,7 @@ import Image from "next/image"
 
 const Home = () => {
   return (
-    <div className='flex items-center gap-28'>
+    <div className='flex items-center gap-10'>
       <div className="flex-1 flex flex-col gap-8">
         <h1 className={styles.title}>
           Better prediction
@@ -19,7 +19,7 @@ const Home = () => {
         </Link>
         
       </div>
-      <div className="flex-1 flex flex-col gap-50">
+      <div className="flex-1 flex flex-col gap-50 w-full h-96 ">
         <Image src={stockImg} alt="" className='w-full h-96 object-contain'/>
       </div>
       
