@@ -19,7 +19,7 @@ export default function RootLayout({
         <link rel='icon' href='logo.jpg'/>
       </head>
       <body className={inter.className} suppressHydrationWarning={true}>
-        <div className="max-w-screen-xl min-h-screen px-16 flex flex-column justify-between bg-black text-white">
+        <div className=" min-h-screen px-16 flex flex-column justify-between bg-black text-white">
           {children}
         </div>
       </body>
