@@ -1,5 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
+import Navbar from '../components/Navbar/Navbar'
+import Footer from '../components/Footer/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,8 +21,11 @@ export default function RootLayout({
         <link rel='icon' href='logo.jpg'/>
       </head>
       <body className={inter.className} suppressHydrationWarning={true}>
-        <div className=" min-h-screen px-16 flex flex-column justify-between bg-black text-white">
+        {/* bg-black text-white */}
+        <div className="min-h-screen px-16 mx-auto flex flex-col justify-between">
+          <Navbar />
           {children}
+          <Footer />
         </div>
       </body>
     </html>
