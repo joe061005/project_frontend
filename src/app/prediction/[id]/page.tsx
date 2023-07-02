@@ -1,7 +1,5 @@
 import React from 'react'
-import { server_baseURL } from '../../utils/global'
-import StockDetailTable from '@/components/StockDetailTable/StockDetailTable';
-
+import { server_baseURL } from '../../../utils/global'
 
 
 export interface StockDetails {

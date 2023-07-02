@@ -1,1 +1,1 @@
-export const server_baseURL = 'http://localhost:3001'
+export const server_baseURL = 'http://localhost:3001/stock_prediction'

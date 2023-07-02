@@ -22,7 +22,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className} suppressHydrationWarning={true}>
         {/* bg-black text-white */}
-        <div className="min-h-screen px-16 mx-auto flex flex-col justify-between">
+        <div className="min-h-screen px-16 mx-auto flex flex-col justify-between gap-8">
           <Navbar />
           {children}
           <Footer />

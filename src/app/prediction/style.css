@@ -1,0 +1,45 @@
+.items_5 {
+    width: 18.3%;
+}
+
+.item{
+    background-color: #fafafa;
+    height: 250px;
+    border-radius: 10px;
+}
+
+.item:hover{
+    border-width: 2px;
+    border-color: #fcd535;
+    border-radius: 10px;
+}
+
+.item:hover > .itemContainer > .btn{
+    background-color: #fcd535;
+}
+
+.item:hover > .itemContainer > .btn > svg > path{
+    fill: black;
+}
+
+.btn {
+    display: flex;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(234, 236, 239);
+    width: 32px;
+    height: 32px;
+}
+
+.BtnSvg {
+    color: #929AA5;
+    width: 24px;
+    height: 24px;
+}
+
+.chartContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
