@@ -3,25 +3,13 @@ import styles from './page.module.css'
 import Link from 'next/link'
 import stockImg from '../../public/prediction.jpg'
 import Image from "next/image"
-import { server_baseURL } from '../utils/global'
 import ImgList from '../components/ImageList/ImageList'
-
-export interface stockImage {
-  id: number;
-  ImageURL: string;
-  Ticker: string;
-}
-
-export const getStockImg = async (): Promise<stockImage[]> => {
-  const res = await fetch(`${server_baseURL}/getStockImg`, { cache: 'force-cache' })
-  const data: stockImage[] = await res.json()
-  console.log(data);
-  return data
-}
+import { API } from '@/API/api'
+import { stockImage } from '@/model/model'
 
 const Home = async () => {
 
-  const stockImages: stockImage[] = await getStockImg()
+  const stockImages: stockImage[] = await API.getStockImg()
 
   return (
     <div className='flex flex-col gap-32'>

@@ -1,52 +1,18 @@
 import React from 'react'
-import { server_baseURL } from '../../utils/global'
-import { stockImage, getStockImg } from '../page';
 import Image from "next/image"
 import PieChart from '../../components/PieChart/PieChart'
 import moment from 'moment';
 import './style.css'
 var stats = require("stats-lite")
-
-interface stockSentimentRaw {
-  id: number;
-  Ticker: string;
-  date: Date;
-  sentence: string;
-  sentiment: number;
-}
-
-interface stockSentiment {
-  [key: string]: number[]
-}
-
-export interface stockSentimentMap{
-  Bearish: number,
-  Neutral: number,
-  Bullish: number,
-
-}
-
-const getStockSentiment = async (): Promise<stockSentiment> => {
-  const res = await fetch(`${server_baseURL}/stock`, { cache: 'no-store' })
-  const data: stockSentimentRaw[] = await res.json()
-
-  const groupByTicker: { [key: string]: number[] } = data.reduce((group, item) => {
-    const { Ticker } = item;
-    group[Ticker] = group[Ticker] || [];
-    group[Ticker].push(item.sentiment);
-    return group;
-  }, {} as { [key: string]: number[] })
-
-  console.log("xdd", groupByTicker);
-
-  return groupByTicker
-}
+import Link from 'next/link'
+import { API } from '@/API/api';
+import { stockImage, stockSentiment, stockSentimentMap } from '@/model/model';
 
 
 const Prediction = async () => {
 
-  const stockImage: stockImage[] = await getStockImg()
-  const stockSentiment: stockSentiment = await getStockSentiment()
+  const stockImage: stockImage[] = await API.getStockImg()
+  const stockSentiment: stockSentiment = await API.getStockSentiment()
 
   const getSentimentArr = () => {
     const valueMap: stockSentimentMap = {
@@ -85,7 +51,7 @@ const Prediction = async () => {
             stockImage.map((stock, index) => {
 
               return (
-                <a className='py-6 mb-6 items_5 item flex items-center justify-center' href={`/prediction/${stock.Ticker}`}>
+                <Link className='py-6 mb-6 items_5 item flex items-center justify-center' href={{pathname: `/prediction/${stock.Ticker}`}}>
                   <div className="flex flex-col items-center gap-5 itemContainer">
                     <div>
                       <Image src={`${stock.ImageURL}`} alt='' width={45} height={45} />
@@ -103,7 +69,7 @@ const Prediction = async () => {
                       </svg>
                     </div>
                   </div>
-                </a>
+                </Link>
               )
             })
           }
