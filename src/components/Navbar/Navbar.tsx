@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import './style.css'
 
 const Navbar = () => {
 
@@ -10,9 +11,9 @@ const Navbar = () => {
             BertPredict
         </Link>
         <div className="flex items-center gap-5">
-          <Link href='/'>Home</Link>
-          <Link href='/overview'>Overview</Link>
-          <Link href='/prediction'>Prediction</Link>
+          <Link className="Home" href='/'>Home</Link>
+          <Link className="Overview" href='/overview'>Overview</Link>
+          <Link className="Prediction" href='/prediction'>Prediction</Link>
         </div>
     </div>
   )

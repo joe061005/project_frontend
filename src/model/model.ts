@@ -38,3 +38,8 @@ export interface stockSentimentMap {
     Bullish: number,
 
 }
+
+// prediction/:id
+export interface updatedStockSentimentMap {
+    [key: string]: stockSentimentMap
+}

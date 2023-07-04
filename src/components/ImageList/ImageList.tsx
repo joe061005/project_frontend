@@ -2,7 +2,7 @@
 import React from 'react'
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import {stockImage} from '../../app/page'
+import { stockImage } from '@/model/model';
 import Image from "next/image"
 
 interface ImageListProps {

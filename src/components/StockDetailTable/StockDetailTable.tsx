@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 import Image from "next/image"
 import styles from '../page.module.css'
 import millify from 'millify';
-import { StockDetails } from '../../app/overview/page'
+import { StockDetails } from '@/model/model';
 
 interface stockDetailTableProp {
     detail: StockDetails[]

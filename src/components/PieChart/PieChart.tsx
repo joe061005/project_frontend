@@ -1,7 +1,7 @@
 "use client";
 import React from 'react'
 import { PieChart } from 'react-minimal-pie-chart';
-import { stockSentimentMap } from '@/app/prediction/page';
+import { stockSentimentMap } from '@/model/model';
 
 interface pieChartProp {
     sentimentMap: stockSentimentMap

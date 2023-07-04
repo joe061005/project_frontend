@@ -7,13 +7,15 @@ export const API = {
     getStockDetails: async (): Promise<StockDetails[]> => {
         const res = await fetch(`${server_baseURL}/getStockDetails`, { cache: 'no-store' })
         const data: StockDetails[] = await res.json()
+        console.log("getStockDetails", data);
+        
         return data
     },
 
     getStockImg: async (): Promise<stockImage[]> => {
         const res = await fetch(`${server_baseURL}/getStockImg`, { cache: 'force-cache' })
         const data: stockImage[] = await res.json()
-        console.log(data);
+        console.log("getStockImg", data);
         return data
     },
 
@@ -28,7 +30,7 @@ export const API = {
           return group;
         }, {} as { [key: string]: number[] })
       
-        console.log("xdd", groupByTicker);
+        console.log("getStockSentiment", groupByTicker);
       
         return groupByTicker
     },
@@ -45,7 +47,7 @@ export const API = {
           return group;
         }, {} as { [key: string]: number[] })
       
-        console.log("xdd", groupByDate);
+        console.log("getWeeklySentimentByTicker", groupByDate);
       
         return groupByDate
     }

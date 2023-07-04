@@ -42,7 +42,7 @@ const Prediction = async () => {
   return (
     <div>
       <div className='font-medium text-lg'>Prediction Summary on {moment().format('DD-MM-YYYY')}</div>
-      <div className="mt-16 chartContainer">
+      <div className="mt-16 flex flex-col items-center justify-center ">
         <PieChart sentimentMap={getSentimentArr()}/>
       </div>
       <div className="mt-16">

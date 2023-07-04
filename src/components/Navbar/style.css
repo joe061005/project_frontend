@@ -1,0 +1,4 @@
+.Home:hover, .Overview:hover, .Prediction:hover{
+    /* background-color: aquamarine; */
+    border-bottom: solid;
+}

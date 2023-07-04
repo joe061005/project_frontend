@@ -2,6 +2,7 @@ import React from 'react'
 import StockDetailTable from '@/components/StockDetailTable/StockDetailTable';
 import {API} from "../../API/api"
 import { StockDetails } from '@/model/model';
+import moment from 'moment';
 
 
 const Overview = async () => {
@@ -13,7 +14,7 @@ const Overview = async () => {
 
   return (
     <div>
-      <div className='font-medium text-lg'>Market Overview</div>
+      <div className='font-medium text-lg'>Market Overview on {moment().format('DD-MM-YYYY')}</div>
       <StockDetailTable detail={stockDetails} />
     </div>
   )
