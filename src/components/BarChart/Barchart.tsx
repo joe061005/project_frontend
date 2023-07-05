@@ -10,7 +10,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import React from 'react'
-import { stockSentimentMap } from '@/model/model';
+import { barChartData, sentimentTextMap, updatedStockSentimentMap } from '@/model/model';
 
 ChartJS.register(
     CategoryScale,
@@ -21,11 +21,11 @@ ChartJS.register(
     Legend
 );
 
-export const options = {
+ const options = {
     plugins: {
         title: {
-            display: true,
-            text: 'Chart.js Bar Chart - Stacked',
+            display: false,
+            text: '',
         },
     },
     responsive: true,
@@ -39,36 +39,50 @@ export const options = {
     },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+interface barChartProp {
+    sentimentMap: updatedStockSentimentMap;
+}
 
-export const data = {
-    labels,
-    datasets: [
-        {
-            label: 'Dataset 1',
-            data: [1, 2 ,3],
-            backgroundColor: 'rgb(255, 99, 132)',
-        },
-        {
-            label: 'Dataset 2',
-            data: [2, 3, 4],
-            backgroundColor: 'rgb(75, 192, 192)',
-        },
-        {
-            label: 'Dataset 3',
-            data: [5, 6 , 7],
-            backgroundColor: 'rgb(53, 162, 235)',
-        },
-    ],
-};
 
-// interface barChartProp {
-//     sentimentMap: stockSentimentMap
-// }
+const barChart: React.FC<barChartProp> = ({sentimentMap}) => {
+    const labels = Object.keys(sentimentMap).sort((a,b) => {
+        a = a.split('-').reverse().join('');
+        b = b.split('-').reverse().join('');
+        return a.localeCompare(b)
+    })
+    const getSentimentTextMap = (): sentimentTextMap => {
+        const sentimentTextMap: sentimentTextMap = {
+            "Bearish": [],
+            "Neutral": [],
+            "Bullish": []
+        }
+        labels.map((date) => {
+            const data = sentimentMap[date]
+            sentimentTextMap["Bearish"].push(data["Bearish"])
+            sentimentTextMap["Neutral"].push(data["Neutral"])
+            sentimentTextMap["Bullish"].push(data["Bullish"])
+        })
+        return sentimentTextMap
+    }
 
-// : React.FC<barChartProp>
+    const getDataset = (): barChartData[] => {
+        const barChartData: barChartData[] = []
+        const sentimentTextMap: sentimentTextMap = getSentimentTextMap()
+        Object.keys(sentimentTextMap).map((text) => {
+            barChartData.push({
+                label: text,
+                data: sentimentTextMap[text as keyof sentimentTextMap],
+                backgroundColor: text == 'Bearish'? '#cf3c53' : text == "Neutral"? '#3f48cb': '#05a66e'
+            })
+        })
+        return barChartData
+    }
 
-const barChart = () => {
+    const data = {
+        labels,
+        datasets: getDataset()
+    };
+
     return <Bar options={options} data={data} />;
 }
 

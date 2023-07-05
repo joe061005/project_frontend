@@ -31,13 +31,19 @@ const Prediction = async () => {
 
   const getSentimentTextByIndex = (SentimentArr: number[]): string => {
 
+
+    const numOfBearish = SentimentArr.length > 0 ? SentimentArr.filter(x => x == 0).length: 0
+    const numOfNeutral = SentimentArr.length > 0 ? SentimentArr.filter(x => x == 1).length: 0
+    const numOfBullish = SentimentArr.length > 0 ? SentimentArr.filter(x => x == 2).length: 0
+
     // algo to determine the sentiment (# of neutral > # of positive and negative -> neutral else max(# of positive , # of negative))
-    const index = SentimentArr.length > 0 && SentimentArr.filter(x => x == 1).length < SentimentArr.filter(x => x == 0).length +  SentimentArr.filter(x => x == 2).length? Math.max(SentimentArr.filter(x => x == 0).length, SentimentArr.filter(x => x == 2).length) : 1
+    const index = SentimentArr.length > 0 && numOfNeutral <= numOfBearish +  numOfBullish? Math.max(numOfBearish, numOfBullish) : 1
 
     console.log(index);
 
     return index == 0 ? "Bearish" : index == 1 ? "Neutral" : "Bullish"
-  }
+}
+
 
   return (
     <div>

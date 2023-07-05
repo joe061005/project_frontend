@@ -28,18 +28,31 @@ export interface stockSentimentRaw {
 
 // prediction
 export interface stockSentiment {
-    [key: string]: number[]
+    [key: string]: number[];
 }
 
 // prediction
 export interface stockSentimentMap {
-    Bearish: number,
-    Neutral: number,
-    Bullish: number,
+    Bearish: number;
+    Neutral: number;
+    Bullish: number;
 
 }
 
 // prediction/:id
 export interface updatedStockSentimentMap {
-    [key: string]: stockSentimentMap
+    [key: string]: stockSentimentMap;
+}
+
+// prediction/:id
+export interface sentimentTextMap{
+    Bearish: number[];
+    Neutral: number[];
+    Bullish: number[];
+}
+
+export interface barChartData{
+    label: string,
+    data: number[],
+    backgroundColor: string
 }

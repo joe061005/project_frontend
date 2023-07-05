@@ -20,23 +20,6 @@ const pieChart: React.FC<pieChartProp> = ({ sentimentMap }) => {
                 width: '400px',
                 height: '400px'
             }}
-            // data={[
-            //     {
-            //         color: "#E38627",
-            //         title: "One",
-            //         value: 10,
-            //     },
-            //     {
-            //         color: "#C13C37",
-            //         title: "Two",
-            //         value: 15,
-            //     },
-            //     {
-            //         color: "#6A2135",
-            //         title: "Three",
-            //         value: 20,
-            //     },
-            // ]}
             label={({ x, y, dx, dy, dataEntry }) => (
                 <text
                     x={x}
@@ -62,26 +45,7 @@ const pieChart: React.FC<pieChartProp> = ({ sentimentMap }) => {
 
             lengthAngle={-360} 
             animate
-  
-            // animate
-            // animationDuration={40}
-            // animationEasing="ease-in"
-            // center={[50, 50]}
-            // lineWidth={15}
-            // lengthAngle={360}
-            // paddingAngle={0}
-            // radius={50}
-            // rounded
-            // startAngle={0}
-            // viewBoxSize={[100, 100]}
-            // labelStyle={{
-            //     fontSize: "6px",
-            //     color: "FFFFFA",
-            //     fontWeight: "500",
-            //     fontFamily: "monospace"
-            // }}
-            // label={(data) => data.dataEntry.title}
-            // labelPosition={70}
+
         />
     )
 }
