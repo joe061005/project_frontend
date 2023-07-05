@@ -12,12 +12,14 @@ import Image from "next/image"
 import styles from '../page.module.css'
 import millify from 'millify';
 import { StockDetails } from '@/model/model';
+import { useRouter } from 'next/navigation';
 
 interface stockDetailTableProp {
     detail: StockDetails[]
 }
 
 const StockDetailTable: React.FC<stockDetailTableProp> = ({ detail }) => {
+    const router = useRouter()
     return (
         <TableContainer component={Paper} className='my-6'>
             <Table sx={{ minWidth: 1100 }} aria-label="simple table">
@@ -38,9 +40,13 @@ const StockDetailTable: React.FC<stockDetailTableProp> = ({ detail }) => {
                             sx={{
                                 "& .MuiTableRow-root:hover": {
                                     backgroundColor: "primary.light"
+                                },
+                                ":hover": {
+                                    cursor: "pointer"
                                 }
-
                             }}
+                            onClick = {() => {router.push(`/prediction/${row.Ticker}`)}}
+                            
                         >
                             <TableCell
                                 sx={{
